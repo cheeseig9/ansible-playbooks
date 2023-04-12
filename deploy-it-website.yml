@@ -1,6 +1,6 @@
 ---
 
-- name: deploy jupiter website
+- name: deploy it website
   hosts: all
   become: yes
   become_user: root
@@ -22,29 +22,29 @@
 
     - name: download web files from github
       get_url:
-        url: https://github.com/azeezsalu/jupiter/archive/refs/heads/main.zip
+        url: https://github.com/cheeseig9/it-web-sample/archive/refs/heads/main.zip
         dest: /var/www/html
 
     - name: unzip the zip folder
       ansible.builtin.unarchive:
-        src: /var/www/html/jupiter-main.zip
+        src: /var/www/html/it-web-sample-main.zip
         dest: /var/www/html
         remote_src: yes
 
-    - name: copy webfiles from the jupiter-main directory to the html directory
+    - name: copy webfiles from the it-web-sample-main directory to the html directory
       copy: 
-        src: /var/www/html/jupiter-main/
+        src: /var/www/html/it-web-sample-main/
         dest: /var/www/html
         remote_src: yes
 
-    - name: remove the jupiter-main directory
+    - name: remove the it-web-sample-main directory
       file: 
-        path: /var/www/html/jupiter-main
+        path: /var/www/html/it-web-sample-main
         state: absent
 
-    - name: remove the jupiter-main.zip folder
+    - name: remove the it-web-sample-main.zip folder
       file: 
-        path: /var/www/html/jupiter-main.zip
+        path: /var/www/html/it-web-sample-main.zip
         state: absent
 
     - name: start apache server, if not started
